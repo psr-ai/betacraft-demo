@@ -8,7 +8,6 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {withFormik} from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -32,6 +31,8 @@ const validationSchema = yup.object({
         .string('Enter your password')
         .min(6, 'Password should be of minimum 6 characters length')
         .required('Password is required'),
+    passwordConfirmation: yup.string()
+        .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
 
 class Register extends React.Component {
@@ -115,6 +116,19 @@ class Register extends React.Component {
                                     helperText={touched.password && errors.password}
                                 />
                             </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    name="passwordConfirmation"
+                                    label="Confirm Password"
+                                    type="password"
+                                    id="passwordConfirmation"
+                                    value={values.passwordConfirmation}
+                                    onChange={handleChange}
+                                    error={touched.passwordConfirmation && Boolean(errors.passwordConfirmation)}
+                                    helperText={touched.passwordConfirmation && errors.passwordConfirmation}
+                                />
+                            </Grid>
                         </Grid>
                         <Button
                             type="submit"
@@ -145,6 +159,7 @@ export default
             lastName: '',
             email: '',
             password: '',
+            passwordConfirmation: ''
         }),
         validationSchema: validationSchema,
         handleSubmit: (values) => {
