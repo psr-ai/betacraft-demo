@@ -1,1 +1,1 @@
-# Demo project for Betacraft
+# Demo project for BetaCraft
