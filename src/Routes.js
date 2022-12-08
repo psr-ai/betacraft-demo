@@ -8,6 +8,8 @@ import Register from './features/register/Register';
 import { Counter } from './features/counter/Counter';
 import {useSelector} from "react-redux";
 import {selectToken} from "./features/user/userSlice";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -21,10 +23,14 @@ import {selectToken} from "./features/user/userSlice";
 export default function IndexRoutes() {
     const token = useSelector(selectToken);
     return (
-        <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            {token && <Route path="/dashboard" element={<Counter />} />}
-        </Routes>
+        <>
+            <Header/>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                {token && <Route path="/dashboard" element={<Counter />} />}
+            </Routes>
+            <Footer />
+        </>
     );
 }
