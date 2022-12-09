@@ -4,6 +4,12 @@
   justify-content: center;
 }
 
+.welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .row > button {
   margin-left: 4px;
   margin-right: 8px;

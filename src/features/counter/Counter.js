@@ -9,6 +9,7 @@ import {
   selectCount,
 } from './counterSlice';
 import styles from './Counter.module.css';
+import Typography from '@mui/material/Typography';
 
 export function Counter() {
   const count = useSelector(selectCount);
@@ -19,6 +20,9 @@ export function Counter() {
 
   return (
     <div>
+      <Typography variant="h3" component="div" sx={{ flexGrow: 1 }} className={styles.welcome}>
+        Welcome
+      </Typography>
       <div className={styles.row}>
         <button
           className={styles.button}
